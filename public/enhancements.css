@@ -1,1 +1,758 @@
-:root[data-theme="dark"]{--ink:#e8f5eb;--muted:#a8c2b0;--green:#7ecf98;--darkgreen:#5ab879;--mint:#173a28;--pale:#102218;--line:#294b38;--white:#162d20;--shadow:0 14px 40px rgba(0,0,0,.22)}:root[data-theme="dark"] .sidebar,:root[data-theme="dark"] .topbar,:root[data-theme="dark"] .student-card,:root[data-theme="dark"] .summary-card,:root[data-theme="dark"] .leader-card,:root[data-theme="dark"] .panel,:root[data-theme="dark"] .big-stat,:root[data-theme="dark"] .modal,:root[data-theme="dark"] .search,:root[data-theme="dark"] .sort-label select{background:#162d20}:root[data-theme="dark"] .hero,:root[data-theme="dark"] .detail-hero{background:linear-gradient(110deg,#173326,#1e4931)}:root[data-theme="dark"] th{background:#193524}:root[data-theme="dark"] .brand-mark{background:#fff!important}.theme-toggle{width:39px;height:39px;border-radius:12px;background:#edf8ef;color:#37755a;font-size:16px}.account-menu{position:relative}.account-toggle{display:flex;align-items:center;gap:7px;background:transparent;color:var(--ink);font-size:12px;font-weight:700}.account-toggle .avatar{width:30px;height:30px;border-radius:9px;font-size:10px}.account-popover{position:absolute;display:none;right:0;top:42px;width:210px;background:var(--white);padding:12px;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}.account-menu.open .account-popover{display:block}.account-popover p{font-size:11px;color:var(--muted);margin:2px 0 10px}.account-popover button{width:100%;padding:9px;background:transparent;text-align:left;color:#aa5555;border-radius:7px}.account-popover button:hover{background:var(--pale)}.hero-orb,.empty-icon,.page-title h1 span,.side-tip>span{display:none}.summary .sicon{font-size:0}.summary .sicon:after{content:'+';font-size:18px;color:#39815a}.student-card .rank{display:none}.student-card{padding-top:20px}.login-page{min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 10% 10%,#e1f5e7,transparent 34%),var(--pale);padding:22px}.login-card{width:min(440px,100%);background:white;padding:42px;border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow)}.login-brand{display:inline-flex;padding:0;margin-bottom:38px}.login-card h1{font-family:'Playfair Display',serif;font-size:35px;line-height:1.12;margin:0 0 15px}.login-copy,.login-note{color:var(--muted);font-size:13px;line-height:1.6}.google-button{margin:25px 0 13px;display:flex;justify-content:center;align-items:center;gap:11px;background:white;color:#315443;border:1px solid #d8e7dc;border-radius:12px;padding:13px;text-decoration:none;font-size:13px;font-weight:700}.google-button:hover{background:#f6fbf7}.google-g{font:700 18px Arial;color:#4285f4}.login-note{font-size:11px;text-align:center}.unavailable{color:var(--muted);font-size:13px;line-height:1.5}.activity-unavailable{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line);font-size:13px}.activity-unavailable span{color:var(--muted)}
+/* ===============================
+   LIGHT MODE ONLY
+   =============================== */
+
+:root {
+  color-scheme: light;
+}
+
+/* Never show any old dark-mode controls */
+
+.theme-toggle,
+.dark-mode-toggle,
+#themeToggle,
+[data-theme-toggle] {
+  display: none !important;
+}
+
+/* ===============================
+   ACCOUNT
+   =============================== */
+
+.account-menu {
+  position: relative;
+}
+
+.account-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: transparent;
+  color: var(--ink);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  padding: 3px 6px;
+  border-radius: 10px;
+}
+
+.account-toggle:hover {
+  background: #f1f8f3;
+}
+
+.account-toggle .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+.account-name {
+  max-width: 120px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.account-popover {
+  position: absolute;
+
+  right: 0;
+  top: 43px;
+
+  width: 220px;
+
+  display: none;
+
+  background: #ffffff;
+
+  padding: 15px;
+
+  border: 1px solid var(--line);
+  border-radius: 14px;
+
+  box-shadow:
+    0 14px 40px rgba(45, 104, 73, .12);
+
+  z-index: 20;
+}
+
+.account-menu.open
+.account-popover {
+  display: block;
+}
+
+.account-popover strong {
+  display: block;
+
+  color: var(--ink);
+
+  font-size: 13px;
+}
+
+.account-popover p {
+  font-size: 11px;
+
+  color: var(--muted);
+
+  margin: 3px 0 11px;
+
+  word-break: break-word;
+}
+
+.account-popover
+.logout-button {
+  width: 100%;
+
+  padding: 9px;
+
+  background: #fff5f5;
+
+  color: #a64c4c;
+
+  text-align: left;
+
+  border-radius: 8px;
+}
+
+.account-popover
+.logout-button:hover {
+  background: #ffeded;
+}
+
+/* ===============================
+   BREADCRUMB
+   =============================== */
+
+.crumb a {
+  color: var(--ink);
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
+
+.crumb a:hover {
+  color: #287451;
+}
+
+/* ===============================
+   SUMMARY ICONS
+   =============================== */
+
+.summary .sicon {
+  display: grid;
+  place-items: center;
+}
+
+.summary .sicon svg {
+  width: 18px;
+  height: 18px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.8;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.summary-card:nth-child(1)
+.sicon {
+  color: #39815a;
+}
+
+.summary-card:nth-child(2)
+.sicon {
+  color: #3776a8;
+}
+
+.summary-card:nth-child(3)
+.sicon {
+  color: #b67825;
+}
+
+.summary-card:nth-child(4)
+.sicon {
+  color: #7c5aa6;
+}
+
+.summary-card:nth-child(5)
+.sicon {
+  color: #39815a;
+}
+
+/* ===============================
+   CLEAN BUTTONS
+   =============================== */
+
+.primary {
+  box-shadow:
+    0 7px 16px rgba(45, 128, 86, .16);
+}
+
+.primary:hover {
+  box-shadow:
+    0 9px 18px rgba(45, 128, 86, .20);
+}
+
+/* ===============================
+   BADGES
+   =============================== */
+
+.badge-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(112px, 1fr));
+
+  gap: 12px;
+}
+
+.badge-card {
+  min-width: 0;
+
+  text-align: center;
+
+  border: 1px solid var(--line);
+
+  border-radius: 13px;
+
+  padding: 12px 8px;
+
+  background: #f6fbf7;
+
+  transition: .2s;
+}
+
+.badge-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(45, 104, 73, .08);
+}
+
+.badge-image {
+  height: 58px;
+
+  display: grid;
+
+  place-items: center;
+
+  margin-bottom: 8px;
+}
+
+.badge-image img {
+  max-width: 54px;
+  max-height: 54px;
+
+  object-fit: contain;
+}
+
+.badge-fallback {
+  width: 38px;
+  height: 38px;
+
+  border: 1.5px solid #75b98b;
+
+  border-radius: 11px;
+
+  position: relative;
+}
+
+.badge-fallback::after {
+  content: '';
+
+  position: absolute;
+
+  inset: 9px;
+
+  border:
+    1.5px solid #75b98b;
+
+  border-radius: 50%;
+}
+
+.badge-card strong {
+  display: block;
+
+  color: var(--ink);
+
+  font-size: 11px;
+
+  line-height: 1.35;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.badge-card small {
+  display: block;
+
+  font-size: 10px;
+
+  color: var(--muted);
+
+  margin-top: 4px;
+}
+
+.empty-badges {
+  padding: 20px;
+
+  text-align: center;
+
+  border:
+    1px dashed #c8e4d0;
+
+  border-radius: 12px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+  background: #f8fcf9;
+}
+
+/* ===============================
+   REMOVE OLD ACTIVITY STYLES
+   =============================== */
+
+.activity-status {
+  display: none !important;
+}
+
+/* ===============================
+   MOBILE ACCOUNT
+   =============================== */
+
+@media (max-width: 720px) {
+
+  .account-name {
+    display: none;
+  }
+
+  .account-popover {
+    right: -5px;
+  }
+}
+.user-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 4px;
+
+    font-size: 11px;
+    font-weight: 700;
+    color: #5d7668;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.online {
+    background: #42a66b;
+    box-shadow: 0 0 0 3px #e5f4ea;
+}
+
+.status-dot.offline {
+    background: #aab7b0;
+    box-shadow: 0 0 0 3px #eef1ef;
+}
+
+.account-menu {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.account-toggle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.account-name {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.account-popover {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 42px;
+    width: 210px;
+
+    padding: 14px;
+
+    background: #ffffff;
+    border: 1px solid #dce9e1;
+    border-radius: 12px;
+
+    box-shadow: 0 12px 30px rgba(40, 80, 55, 0.12);
+
+    z-index: 100;
+}
+
+.account-menu.open .account-popover {
+    display: block;
+}
+
+.account-popover strong {
+    display: block;
+    color: #183c2b;
+    font-size: 13px;
+}
+
+.account-popover p {
+    margin: 4px 0 12px;
+    color: #789084;
+    font-size: 11px;
+    word-break: break-word;
+}
+
+.logout-button {
+    width: 100%;
+    padding: 8px 10px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: #fff1f1;
+    color: #a34d4d;
+
+    text-align: left;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background: #ffe5e5;
+}
+/* =========================================
+   STUDENT CARD STATUS + MENU
+========================================= */
+
+.student-card {
+    position: relative;
+}
+
+.student-card-actions {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    z-index: 5;
+}
+
+.student-status {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    display: block;
+}
+
+.student-status.active {
+    background: #43a86b;
+
+    box-shadow:
+        0 0 0 3px #e6f5eb;
+}
+
+.student-status.inactive {
+    background: #aeb8b2;
+
+    box-shadow:
+        0 0 0 3px #eef1ef;
+}
+
+.student-card .more {
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    color: #678174;
+
+    font-size: 21px;
+    line-height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border-radius: 7px;
+}
+
+.student-card .more:hover {
+    background: #edf5ef;
+}
+
+.student-card .menu {
+    position: absolute;
+
+    top: 51px;
+    right: 17px;
+
+    width: 155px;
+
+    display: none;
+
+    flex-direction: column;
+
+    padding: 6px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce9e1;
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 10px 25px rgba(
+            30,
+            70,
+            50,
+            0.10
+        );
+
+    z-index: 20;
+}
+
+.student-card .menu.show {
+    display: flex;
+}
+
+.student-card .menu button {
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #405f51;
+
+    text-align: left;
+
+    font: inherit;
+    font-size: 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.student-card .menu button:hover {
+    background: #f1f7f3;
+}
+
+.student-card .menu button.danger {
+    color: #c25757;
+}
+
+.student-card .menu button.danger:hover {
+    background: #fff1f1;
+}
+
+
+/* =========================================
+   TEACHER ACCOUNT
+========================================= */
+
+.account-menu {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+}
+
+.account-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--ink);
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.account-toggle .avatar {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.account-toggle .avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.teacher-initials {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e3f3e8;
+
+    color: #2c7651;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.account-name {
+    max-width: 120px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.account-popover {
+    position: absolute;
+
+    display: none;
+
+    right: 0;
+    top: 42px;
+
+    width: 210px;
+
+    padding: 13px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce9e1;
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 12px 30px rgba(
+            40,
+            80,
+            55,
+            0.12
+        );
+
+    z-index: 100;
+}
+
+.account-menu.open
+.account-popover {
+    display: block;
+}
+
+.account-popover strong {
+    display: block;
+
+    color: #183c2b;
+
+    font-size: 13px;
+}
+
+.account-popover p {
+    margin: 4px 0 11px;
+
+    color: #789084;
+
+    font-size: 11px;
+
+    word-break: break-word;
+}
+
+.account-popover button {
+    width: 100%;
+
+    padding: 9px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #aa5555;
+
+    text-align: left;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+.account-popover button:hover {
+    background: #fff1f1;
+}
+
+
+/* =========================================
+   REMOVE OLD ACTIVE TEXT
+========================================= */
+
+.student-card .status {
+    display: none !important;
+}
+
+
+/* =========================================
+   REMOVE DARK MODE OVERRIDES
+========================================= */
+
+:root[data-theme="dark"] {
+    color-scheme: light;
+}
+/* Slightly darker green on the left side of student progress bars */
+.student-card .progress i {
+    background: linear-gradient(
+        to right,
+        #69bd88 0%,
+        #8fd7aa 35%,
+        #4eaa75 100%
+    );
+}

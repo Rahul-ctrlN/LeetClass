@@ -1,9 +1,585 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>LeetClass — Your coding classroom</title><link rel="stylesheet" href="/styles.css"></head>
-<body><div class="app-shell"><aside class="sidebar"><a class="brand" href="#classroom"><span class="brand-mark" style="background:white;overflow:hidden"><img src="https://leetcode.com/favicon.ico" alt="LeetCode logo" style="width:24px;height:24px;object-fit:contain"></span><span>Leet<span>Class</span><small>Your coding classroom</small></span></a><nav><a class="active" href="#classroom" data-view="classroom"><i>▦</i> Classroom</a><a href="#leaderboard" data-view="leaderboard"><i>♕</i> Leaderboard</a><a href="#students" data-view="students"><i>◉</i> Students <b id="sideCount">0</b></a></nav><div class="side-tip"><span>✦</span><strong>Grow together</strong><p>Celebrate every solved problem as a class.</p></div></aside>
-<main><header class="topbar"><button class="mobile-menu" aria-label="Open menu">☰</button><div class="crumb">Classroom <span>/</span> <em id="pageLabel">Overview</em></div><div class="top-actions"><button class="icon-btn" id="refreshAll" title="Refresh all statistics">↻</button><button class="primary" data-open-modal>＋ Add Student</button></div></header>
-<section id="classroom" class="view active"><div class="hero"><div><p class="eyebrow">YOUR CLASSROOM</p><h1>Good morning, teacher <span>✦</span></h1><p>Keep your coding community motivated and moving forward.</p></div><div class="hero-orb" aria-label="Progress graph">📈</div></div><div class="summary" id="summary"></div><div class="section-head"><div><h2>Your students</h2><p id="studentSub">Loading your classroom...</p></div><button class="soft-btn" data-open-modal>＋ Add student</button></div><div class="tools"><label class="search"><span>⌕</span><input id="studentSearch" placeholder="Search students"></label><div class="filters" id="filters"><button class="selected" data-filter="all">All</button><button data-filter="top">Top performers</button><button data-filter="solved">Most solved</button><button data-filter="acceptance">Highest acceptance</button></div></div><div id="studentGrid" class="student-grid"></div></section>
-<section id="leaderboard" class="view"><div class="page-title"><p class="eyebrow">CLASS STANDINGS</p><h1>Classroom leaderboard <span>🏆</span></h1><p>See who's leading the class and celebrate every step forward.</p></div><div class="leader-card"><div class="table-tools"><label class="search"><span>⌕</span><input id="leaderSearch" placeholder="Search students..."></label><label class="sort-label">Sort by <select id="leaderSort"><option value="totalSolved">Total problems</option><option value="acceptanceRate">Acceptance rate</option><option value="easySolved">Easy</option><option value="mediumSolved">Medium</option><option value="hardSolved">Hard</option></select></label></div><div class="table-wrap"><table><thead><tr><th>Rank</th><th>Student</th><th>Problems</th><th>Acceptance</th><th>Easy</th><th>Medium</th><th>Hard</th></tr></thead><tbody id="leaderBody"></tbody></table></div></div></section>
-<section id="students" class="view"><div class="page-title"><p class="eyebrow">CLASS ROSTER</p><h1>All students <span>🌱</span></h1><p>Every person building their problem-solving muscles.</p></div><div id="studentList" class="student-grid"></div></section>
-<section id="detail" class="view"><button class="back" id="backButton">← Back to Classroom</button><div id="detailContent"></div></section></main></div>
-<div class="modal-backdrop" id="modal"><form class="modal" id="addForm"><button type="button" class="close" data-close-modal>×</button><div class="modal-icon">＋</div><h2>Add student</h2><p>Invite a learner to your coding classroom.</p><label>Student name<input id="studentName" required placeholder="e.g. Rahul Sharma" maxlength="60"></label><label>LeetCode profile URL<input id="profileUrl" required type="url" placeholder="https://leetcode.com/u/username"></label><p class="form-error" id="formError"></p><div class="form-actions"><button type="button" class="text-btn" data-close-modal>Cancel</button><button class="primary" id="submitStudent">Add Student</button></div></form></div><div id="toast" class="toast"></div><script src="/app.js"></script></body></html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0"
+  >
+
+  <title>
+    LeetClass — Your coding classroom
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="/styles.css"
+  >
+
+</head>
+
+<body>
+
+<div class="app-shell">
+
+  <!-- ================= SIDEBAR ================= -->
+
+  <aside class="sidebar">
+
+    <a
+      class="brand"
+      href="#classroom"
+      data-view="classroom"
+      aria-label="Go to Classroom"
+    >
+
+      <span
+        class="brand-mark"
+        style="
+          background:white;
+          overflow:hidden;
+        "
+      >
+
+        <img
+          src="https://leetcode.com/favicon.ico"
+          alt="LeetCode logo"
+          style="
+            width:24px;
+            height:24px;
+            object-fit:contain;
+          "
+        >
+
+      </span>
+
+      <span>
+        Leet<span>Class</span>
+
+        <small>
+          Your coding classroom
+        </small>
+      </span>
+
+    </a>
+
+
+    <nav>
+
+      <a
+        class="active"
+        href="#classroom"
+        data-view="classroom"
+      >
+        <i>▦</i>
+        Classroom
+      </a>
+
+
+      <a
+        href="#leaderboard"
+        data-view="leaderboard"
+      >
+        <i>♕</i>
+        Leaderboard
+      </a>
+
+
+      <a
+        href="#students"
+        data-view="students"
+      >
+        <i>◉</i>
+        Students
+
+        <b id="sideCount">
+          0
+        </b>
+
+      </a>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- ================= MAIN ================= -->
+
+  <main>
+
+    <header class="topbar">
+
+      <button
+        class="mobile-menu"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+
+      <!-- ================= BREADCRUMB ================= -->
+
+      <div class="crumb">
+
+        <a
+          href="#classroom"
+          data-view="classroom"
+        >
+          Classroom
+        </a>
+
+        <span
+          id="crumbSeparator"
+          style="display:none;"
+        >
+          /
+        </span>
+
+        <em
+          id="pageLabel"
+          style="display:none;"
+        ></em>
+
+      </div>
+
+
+      <!-- ================= TOP ACTIONS ================= -->
+
+      <div class="top-actions">
+
+        <button
+          class="icon-btn"
+          id="refreshAll"
+          title="Refresh all statistics"
+          aria-label="Refresh all statistics"
+        >
+          ↻
+        </button>
+
+
+        <button
+          class="primary"
+          data-open-modal
+        >
+          Add Student
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- ================= CLASSROOM ================= -->
+
+    <section
+      id="classroom"
+      class="view active"
+    >
+
+      <div class="hero">
+
+        <div>
+
+          <p class="eyebrow">
+            YOUR CLASSROOM
+          </p>
+
+          <h1>
+            Good morning, teacher
+          </h1>
+
+          <p>
+            Keep your coding community
+            motivated and moving forward.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="summary"
+        id="summary"
+      ></div>
+
+
+      <div class="section-head">
+
+        <div>
+
+          <h2>
+            Your students
+          </h2>
+
+          <p id="studentSub">
+            Loading your classroom...
+          </p>
+
+        </div>
+
+
+        <button
+          class="soft-btn"
+          data-open-modal
+        >
+          Add student
+        </button>
+
+      </div>
+
+
+      <div class="tools">
+
+        <label class="search">
+
+          <span>
+            ⌕
+          </span>
+
+          <input
+            id="studentSearch"
+            placeholder="Search students"
+          >
+
+        </label>
+
+
+        <div
+          class="filters"
+          id="filters"
+        >
+
+          <button
+            class="selected"
+            data-filter="all"
+          >
+            All
+          </button>
+
+
+          <button
+            data-filter="top"
+          >
+            Top performers
+          </button>
+
+
+          <button
+            data-filter="solved"
+          >
+            Most solved
+          </button>
+
+
+          <button
+            data-filter="acceptance"
+          >
+            Highest acceptance
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="studentGrid"
+        class="student-grid"
+      ></div>
+
+    </section>
+
+
+    <!-- ================= LEADERBOARD ================= -->
+
+    <section
+      id="leaderboard"
+      class="view"
+    >
+
+      <div class="page-title">
+
+        <p class="eyebrow">
+          CLASS STANDINGS
+        </p>
+
+        <h1>
+          Classroom leaderboard
+        </h1>
+
+        <p>
+          Compare coding progress
+          across the classroom.
+        </p>
+
+      </div>
+
+
+      <div class="leader-card">
+
+        <div class="table-tools">
+
+          <label class="search">
+
+            <span>
+              ⌕
+            </span>
+
+            <input
+              id="leaderSearch"
+              placeholder="Search students..."
+            >
+
+          </label>
+
+
+          <label class="sort-label">
+
+            Sort by
+
+            <select id="leaderSort">
+
+              <option value="totalSolved">
+                Total problems
+              </option>
+
+              <option value="acceptanceRate">
+                Acceptance rate
+              </option>
+
+              <option value="easySolved">
+                Easy
+              </option>
+
+              <option value="mediumSolved">
+                Medium
+              </option>
+
+              <option value="hardSolved">
+                Hard
+              </option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Rank
+                </th>
+
+                <th>
+                  Student
+                </th>
+
+                <th>
+                  Problems
+                </th>
+
+                <th>
+                  Acceptance
+                </th>
+
+                <th>
+                  Easy
+                </th>
+
+                <th>
+                  Medium
+                </th>
+
+                <th>
+                  Hard
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody
+              id="leaderBody"
+            ></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= STUDENTS ================= -->
+
+    <section
+      id="students"
+      class="view"
+    >
+
+      <div class="page-title">
+
+        <p class="eyebrow">
+          CLASS ROSTER
+        </p>
+
+        <h1>
+          All students
+        </h1>
+
+        <p>
+          Every student in your
+          coding classroom.
+        </p>
+
+      </div>
+
+
+      <div
+        id="studentList"
+        class="student-grid"
+      ></div>
+
+    </section>
+
+
+    <!-- ================= DETAIL ================= -->
+
+    <section
+      id="detail"
+      class="view"
+    >
+
+      <div
+        id="detailContent"
+      ></div>
+
+    </section>
+
+
+    <!-- ================= ADD STUDENT MODAL ================= -->
+
+    <div
+      class="modal-backdrop"
+      id="modal"
+    >
+
+      <form
+        class="modal"
+        id="addForm"
+      >
+
+        <button
+          type="button"
+          class="close"
+          data-close-modal
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+
+        <div class="modal-icon">
+          +
+        </div>
+
+
+        <h2>
+          Add student
+        </h2>
+
+
+        <p>
+          Add a student's LeetCode
+          profile to your classroom.
+        </p>
+
+
+        <label>
+
+          Student name
+
+          <input
+            id="studentName"
+            required
+            placeholder="e.g. Rahul Sharma"
+            maxlength="60"
+          >
+
+        </label>
+
+
+        <label>
+
+          LeetCode profile URL
+
+          <input
+            id="profileUrl"
+            required
+            type="url"
+            placeholder="https://leetcode.com/u/username"
+          >
+
+        </label>
+
+
+        <p
+          class="form-error"
+          id="formError"
+        ></p>
+
+
+        <div class="form-actions">
+
+          <button
+            type="button"
+            class="text-btn"
+            data-close-modal
+          >
+            Cancel
+          </button>
+
+
+          <button
+            class="primary"
+            id="submitStudent"
+          >
+            Add Student
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+
+    <div
+      id="toast"
+      class="toast"
+    ></div>
+
+  </main>
+
+</div>
+
+
+<script src="/app.js"></script>
+
+</body>
+
+</html>

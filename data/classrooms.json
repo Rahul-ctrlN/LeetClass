@@ -1,0 +1,84 @@
+{
+  "users": [],
+  "students": [
+    {
+      "id": "140ef187-f9e3-493e-9008-0bfa3b860ad7",
+      "name": "r2",
+      "leetcodeUsername": "rahul_x18",
+      "leetcodeProfileUrl": "https://leetcode.com/u/rahul_x18",
+      "statistics": {
+        "username": "rahul_x18",
+        "avatar": "https://assets.leetcode.com/users/default_avatar.jpg",
+        "totalSolved": 69,
+        "easySolved": 34,
+        "mediumSolved": 31,
+        "hardSolved": 4,
+        "totalSubmissions": 97,
+        "totalAcceptedSubmissions": 73,
+        "acceptanceRate": 75.26,
+        "activeToday": false,
+        "badges": [],
+        "contestRating": null,
+        "ranking": 2392271,
+        "contestRanking": null
+      },
+      "createdAt": "2026-08-30T05:42:41.284Z",
+      "updatedAt": "2026-08-30T06:39:50.377Z",
+      "ownerId": "4a6688b5-83d6-443c-9a7f-f9c6d1b76138"
+    },
+    {
+      "id": "9b04b181-4029-463f-8e4d-cfb7db7729d7",
+      "name": "r",
+      "leetcodeUsername": "r6bXJzMlmf",
+      "leetcodeProfileUrl": "https://leetcode.com/u/r6bXJzMlmf",
+      "statistics": {
+        "username": "r6bXJzMlmf",
+        "avatar": "https://assets.leetcode.com/users/r6bXJzMlmf/avatar_1745109682.png",
+        "totalSolved": 548,
+        "easySolved": 355,
+        "mediumSolved": 161,
+        "hardSolved": 32,
+        "totalSubmissions": 1546,
+        "totalAcceptedSubmissions": 822,
+        "acceptanceRate": 53.17,
+        "activeToday": true,
+        "badges": [
+          {
+            "id": "10049113",
+            "name": "100 Days Badge 2026",
+            "image": "https://assets.leetcode.com/static_assets/others/100_1080_1080.png",
+            "earnedDate": "2026-04-14",
+            "category": "ANNUAL"
+          },
+          {
+            "id": "9526534",
+            "name": "50 Days Badge 2026",
+            "image": "https://assets.leetcode.com/static_assets/others/50_1080_1080.png",
+            "earnedDate": "2026-02-21",
+            "category": "ANNUAL"
+          },
+          {
+            "id": "8870044",
+            "name": "100 Days Badge 2025",
+            "image": "https://assets.leetcode.com/static_assets/others/lg25100.png",
+            "earnedDate": "2025-12-06",
+            "category": "ANNUAL"
+          },
+          {
+            "id": "7784358",
+            "name": "50 Days Badge 2025",
+            "image": "https://assets.leetcode.com/static_assets/others/lg2550.png",
+            "earnedDate": "2025-08-07",
+            "category": "ANNUAL"
+          }
+        ],
+        "contestRating": 1425,
+        "ranking": 173252,
+        "contestRanking": 633403
+      },
+      "createdAt": "2026-08-30T05:42:51.980Z",
+      "updatedAt": "2026-08-30T06:40:05.672Z",
+      "ownerId": "4a6688b5-83d6-443c-9a7f-f9c6d1b76138"
+    }
+  ]
+}
