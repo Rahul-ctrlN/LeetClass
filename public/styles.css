@@ -70,3 +70,34 @@ body{font-family:'Manrope',sans-serif!important}.hero h1,.page-title h1,.section
 .auth-switch-button:hover {
     text-decoration: underline;
 }
+/* ===== LOGIN LOGO - WHITE BOX ===== */
+
+.login-page .login-brand .brand-mark {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+
+    background: #ffffff !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+    overflow: hidden !important;
+    flex-shrink: 0;
+
+    box-shadow: none !important;
+}
+
+.login-page .login-brand .brand-mark img {
+    width: 26px !important;
+    height: 26px !important;
+
+    max-width: 26px !important;
+    max-height: 26px !important;
+
+    object-fit: contain;
+    display: block;
+}
