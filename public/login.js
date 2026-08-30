@@ -1,0 +1,1 @@
+fetch('/api/auth/me').then(response=>response.json()).then(data=>{ if(data.authenticated) location.replace('/'); if(!data.googleConfigured) document.querySelector('#loginNote').textContent='Google OAuth needs configuration. Add the values in .env to enable sign-in.'; }).catch(()=>{});
