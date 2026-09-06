@@ -1,19 +1,54 @@
-const fs = require('fs/promises');
-const path = require('path');
-
-const dataPath = path.join(__dirname, '..', 'data', 'classrooms.json');
+const supabase = require('./supabase');
 
 async function readStudents(ownerId) {
-  try { const db = JSON.parse(await fs.readFile(dataPath, 'utf8')); return (db.students || []).filter(student => student.ownerId === ownerId); }
-  catch (error) { if (error.code === 'ENOENT') return []; throw error; }
+    const { data, error } = await supabase
+        .from('students')
+        .select('id, owner_id, data')
+        .eq('owner_id', ownerId);
+
+    if (error) {
+        throw error;
+    }
+
+    return (data || []).map(row => ({
+        ...row.data,
+        ownerId: row.owner_id
+    }));
 }
 
 async function writeStudents(ownerId, students) {
-  await fs.mkdir(path.dirname(dataPath), { recursive: true });
-  let db = { users: [], students: [] };
-  try { db = JSON.parse(await fs.readFile(dataPath, 'utf8')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
-  db.students = (db.students || []).filter(student => student.ownerId !== ownerId).concat(students.map(student => ({ ...student, ownerId })));
-  await fs.writeFile(dataPath, JSON.stringify(db, null, 2));
+    // Remove the old students belonging to this teacher
+    const { error: deleteError } = await supabase
+        .from('students')
+        .delete()
+        .eq('owner_id', ownerId);
+
+    if (deleteError) {
+        throw deleteError;
+    }
+
+    // If there are no students, we're finished
+    if (!students || students.length === 0) {
+        return;
+    }
+
+    // Save all current students
+    const rows = students.map(student => ({
+        id: student.id,
+        owner_id: ownerId,
+        data: student
+    }));
+
+    const { error: insertError } = await supabase
+        .from('students')
+        .insert(rows);
+
+    if (insertError) {
+        throw insertError;
+    }
 }
 
-module.exports = { readStudents, writeStudents };
+module.exports = {
+    readStudents,
+    writeStudents
+};

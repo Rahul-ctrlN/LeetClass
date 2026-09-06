@@ -12,5 +12,12 @@
     "email": "trahul0803@gmail.com",
     "passwordHash": "31d2a21ff6e8a01495685ecc90a4360b:60f57aed6b1416ab09dab610979694a2513b179a0ab678d975434ac7ab4587e584e368520f5d3e49aa7bcec69b34efa7c47f86597c562b1e369a31fb261fa85a",
     "createdAt": "2026-08-30T08:22:42.172Z"
+  },
+  {
+    "id": "af494f17-46ad-482c-a80f-8719ffde50cf",
+    "name": "Rahul T",
+    "email": "trahul083@gmail.com",
+    "passwordHash": "020c7ba274f97c63da06275dc7487d0d:f163337eb8e6db10f81f29675309777703390910fa599161d0a75b0f8049b646616207913fd1a25c4838d26d4d1b20a5fa14994abeb641a5fe68cddd0fa61105",
+    "createdAt": "2026-09-06T05:55:31.112Z"
   }
 ]
