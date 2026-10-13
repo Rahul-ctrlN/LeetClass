@@ -1,5 +1,4 @@
 # LeetClass
-Website Link : https://leetclass.onrender.com/
 
 LeetClass is a classroom-style LeetCode analytics application with private, user-scoped classrooms, a detailed student view, refreshable profile data, and a separate leaderboard.
 
